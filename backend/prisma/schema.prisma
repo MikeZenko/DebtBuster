@@ -1,0 +1,225 @@
+// Database schema for DebtTruth Coach
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                String   @id @default(uuid())
+  email             String   @unique
+  passwordHash      String
+  firstName         String
+  lastName          String
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  lastLoginAt       DateTime?
+  emailVerified     Boolean  @default(false)
+  emailVerifiedAt   DateTime?
+  twoFactorEnabled  Boolean  @default(false)
+  subscription      UserSubscription @default(FREE)
+  onboardingCompleted Boolean @default(false)
+  
+  // Relations
+  debts             Debt[]
+  loans             Loan[]
+  plaidItems        PlaidItem[]
+  refreshTokens     RefreshToken[]
+  financialGoals    FinancialGoal[]
+  transactions      Transaction[]
+  
+  @@map("users")
+}
+
+model RefreshToken {
+  id        String   @id @default(uuid())
+  token     String   @unique
+  userId    String
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+  
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@map("refresh_tokens")
+}
+
+model Debt {
+  id              String    @id @default(uuid())
+  userId          String
+  name            String
+  originalBalance Decimal   @db.Decimal(15, 2)
+  currentBalance  Decimal   @db.Decimal(15, 2)
+  apr             Decimal   @db.Decimal(5, 2)
+  minimumPayment  Decimal   @db.Decimal(10, 2)
+  debtType        DebtType
+  isFromPlaid     Boolean   @default(false)
+  plaidAccountId  String?
+  dueDate         DateTime?
+  notes           String?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  
+  user            User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  payments        Payment[]
+  
+  @@map("debts")
+}
+
+model Loan {
+  id           String   @id @default(uuid())
+  userId       String
+  name         String
+  principal    Decimal  @db.Decimal(15, 2)
+  apr          Decimal  @db.Decimal(5, 2)
+  termMonths   Int
+  fees         Decimal  @db.Decimal(10, 2) @default(0)
+  loanType     LoanType @default(PERSONAL)
+  lender       String?
+  notes        String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@map("loans")
+}
+
+model PlaidItem {
+  id              String   @id @default(uuid())
+  userId          String
+  itemId          String   @unique
+  accessToken     String   // This should be encrypted in production
+  institutionId   String
+  institutionName String
+  cursor          String?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  accounts        PlaidAccount[]
+  
+  @@map("plaid_items")
+}
+
+model PlaidAccount {
+  id              String    @id @default(uuid())
+  plaidItemId     String
+  accountId       String    @unique
+  name            String
+  officialName    String?
+  type            String
+  subtype         String?
+  mask            String?
+  currentBalance  Decimal?  @db.Decimal(15, 2)
+  availableBalance Decimal? @db.Decimal(15, 2)
+  creditLimit     Decimal?  @db.Decimal(15, 2)
+  isoCurrencyCode String?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  
+  plaidItem       PlaidItem @relation(fields: [plaidItemId], references: [id], onDelete: Cascade)
+  transactions    Transaction[]
+  
+  @@map("plaid_accounts")
+}
+
+model Transaction {
+  id              String    @id @default(uuid())
+  userId          String
+  plaidAccountId  String?
+  transactionId   String?   @unique // Plaid transaction ID
+  amount          Decimal   @db.Decimal(15, 2)
+  date            DateTime
+  name            String
+  merchantName    String?
+  category        String[]
+  subcategory     String?
+  pending         Boolean   @default(false)
+  accountOwner    String?
+  isManual        Boolean   @default(false)
+  notes           String?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  
+  user            User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  plaidAccount    PlaidAccount? @relation(fields: [plaidAccountId], references: [id], onDelete: Cascade)
+  
+  @@map("transactions")
+}
+
+model Payment {
+  id          String   @id @default(uuid())
+  debtId      String
+  amount      Decimal  @db.Decimal(10, 2)
+  date        DateTime
+  type        PaymentType @default(REGULAR)
+  notes       String?
+  createdAt   DateTime @default(now())
+  
+  debt        Debt     @relation(fields: [debtId], references: [id], onDelete: Cascade)
+  
+  @@map("payments")
+}
+
+model FinancialGoal {
+  id          String   @id @default(uuid())
+  userId      String
+  title       String
+  description String?
+  targetAmount Decimal @db.Decimal(15, 2)
+  currentAmount Decimal @db.Decimal(15, 2) @default(0)
+  targetDate  DateTime
+  goalType    GoalType
+  priority    Int      @default(1)
+  isCompleted Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@map("financial_goals")
+}
+
+// Enums
+enum UserSubscription {
+  FREE
+  PREMIUM
+  ENTERPRISE
+}
+
+enum DebtType {
+  CREDIT_CARD
+  STUDENT_LOAN
+  AUTO_LOAN
+  MORTGAGE
+  PERSONAL_LOAN
+  LINE_OF_CREDIT
+  OTHER
+}
+
+enum LoanType {
+  PERSONAL
+  AUTO
+  MORTGAGE
+  STUDENT
+  BUSINESS
+  OTHER
+}
+
+enum PaymentType {
+  REGULAR
+  EXTRA
+  MINIMUM
+  LUMP_SUM
+}
+
+enum GoalType {
+  DEBT_PAYOFF
+  EMERGENCY_FUND
+  SAVINGS
+  INVESTMENT
+  MAJOR_PURCHASE
+}

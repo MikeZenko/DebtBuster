@@ -1,0 +1,51 @@
+name: debttruth-backend
+services:
+- name: api
+  source_dir: backend
+  github:
+    repo: your-username/your-repo-name
+    branch: main
+  run_command: npm start
+  build_command: npm ci && npm run build && npx prisma generate && npx prisma migrate deploy
+  environment_slug: node-js
+  instance_count: 1
+  instance_size_slug: basic-xxs
+  http_port: 3001
+  envs:
+  - key: NODE_ENV
+    value: production
+  - key: PORT
+    value: "3001"
+  - key: DATABASE_URL
+    value: ${db.DATABASE_URL}
+  - key: JWT_SECRET
+    value: ${JWT_SECRET}
+  - key: JWT_REFRESH_SECRET
+    value: ${JWT_REFRESH_SECRET}
+  - key: PLAID_CLIENT_ID
+    value: ${PLAID_CLIENT_ID}
+  - key: PLAID_SECRET
+    value: ${PLAID_SECRET}
+  - key: PLAID_ENV
+    value: ${PLAID_ENV}
+  - key: CORS_ORIGINS
+    value: ${CORS_ORIGINS}
+  routes:
+  - path: /api
+  - path: /health
+
+databases:
+- name: db
+  engine: PG
+  version: "15"
+  
+workers:
+- name: token-cleanup
+  source_dir: backend
+  github:
+    repo: your-username/your-repo-name
+    branch: main
+  run_command: node -e "setInterval(() => require('./dist/services/authService').AuthService.cleanupExpiredTokens(), 24*60*60*1000)"
+  environment_slug: node-js
+  instance_count: 1
+  instance_size_slug: basic-xxs
