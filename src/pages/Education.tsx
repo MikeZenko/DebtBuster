@@ -102,7 +102,6 @@ export function Education() {
       description: "Navigate complex loan paperwork and spot potential red flags before signing.",
       difficulty: 'Intermediate' as const,
       duration: '12 min',
-      comingSoon: true,
     },
     {
       icon: TrendingUp,
@@ -110,7 +109,6 @@ export function Education() {
       description: "Explore refinancing, consolidation, and other advanced debt management techniques.",
       difficulty: 'Advanced' as const,
       duration: '15 min',
-      comingSoon: true,
     },
     {
       icon: Calculator,
@@ -118,7 +116,6 @@ export function Education() {
       description: "Learn when to prioritize investing over debt payoff and how to balance both goals.",
       difficulty: 'Advanced' as const,
       duration: '18 min',
-      comingSoon: true,
     },
   ];
 
@@ -150,9 +147,9 @@ export function Education() {
   ];
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-8 pb-8">
       {/* Page Header */}
-      <div className="text-center space-y-4">
+      <div className="text-center space-y-3 mb-8">
         <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-orange-100 mb-4">
           <BookOpen className="h-8 w-8 text-orange-600" />
         </div>

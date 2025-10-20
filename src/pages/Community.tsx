@@ -146,9 +146,9 @@ export function Community() {
   ];
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-8 pb-8">
       {/* Page Header */}
-      <div className="text-center space-y-4">
+      <div className="text-center space-y-3 mb-8">
         <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-indigo-100 mb-4">
           <Users className="h-8 w-8 text-indigo-600" />
         </div>
@@ -267,7 +267,7 @@ export function Community() {
       {/* Community Guidelines */}
       <Card className="bg-gradient-to-r from-blue-50 to-indigo-50 border-blue-200">
         <CardHeader>
-          <CardTitle>💙 Community Guidelines</CardTitle>
+          <CardTitle>Community Guidelines</CardTitle>
           <CardDescription>Help us maintain a supportive and helpful environment</CardDescription>
         </CardHeader>
         <CardContent>
