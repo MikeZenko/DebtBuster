@@ -133,15 +133,15 @@ export function Landing() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-50 via-white to-slate-50">
       {/* Header */}
-      <header className="sticky top-0 z-50 backdrop-blur supports-[backdrop-filter]:bg-white/90 border-b">
+      <header className="sticky top-0 z-50 backdrop-blur supports-[backdrop-filter]:bg-white/95 border-b shadow-sm">
         <div className="container mx-auto px-4 h-16 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="h-9 w-9 rounded-2xl bg-slate-900 text-white grid place-items-center font-bold">
+            <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-blue-600 to-purple-600 text-white grid place-items-center font-bold text-sm">
               DT
             </div>
             <div>
-              <div className="font-semibold leading-tight">DebtTruth Coach</div>
-              <div className="text-xs text-muted-foreground -mt-0.5">Financial Freedom Platform</div>
+              <div className="font-semibold text-base leading-tight">DebtTruth Coach</div>
+              <div className="text-xs text-muted-foreground">Financial Freedom Platform</div>
             </div>
           </div>
           
@@ -163,7 +163,7 @@ export function Landing() {
       </header>
 
       {/* Hero Section */}
-      <section className="py-20 md:py-32 relative overflow-hidden">
+      <section className="py-16 md:py-24 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-blue-50 to-purple-50 opacity-70" />
         <div className="container mx-auto px-4 relative">
           <div className="max-w-4xl mx-auto text-center">
@@ -173,7 +173,7 @@ export function Landing() {
               transition={{ duration: 0.6 }}
             >
               <Badge variant="outline" className="mb-6">
-                🎉 Join 10,000+ people on their debt-free journey
+                Join 10,000+ people on their debt-free journey
               </Badge>
               
               <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-6">
@@ -188,13 +188,13 @@ export function Landing() {
                 of people crushing their debt together.
               </p>
               
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
-                <Button size="lg" className="text-lg px-8" onClick={() => openAuth('register')}>
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
+                <Button size="lg" className="text-base px-8 py-6" onClick={() => openAuth('register')}>
                   Start Your Journey Free
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
                 
-                <Button variant="outline" size="lg" className="text-lg px-8">
+                <Button variant="outline" size="lg" className="text-base px-8 py-6">
                   <Play className="mr-2 h-5 w-5" />
                   Watch Demo (2 min)
                 </Button>
@@ -213,7 +213,7 @@ export function Landing() {
       </section>
 
       {/* Features Section */}
-      <section id="features" className="py-20 bg-white">
+      <section id="features" className="py-16 md:py-20 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
@@ -241,7 +241,7 @@ export function Landing() {
       </section>
 
       {/* Benefits Section */}
-      <section className="py-20 bg-gradient-to-r from-blue-50 to-purple-50">
+      <section className="py-16 md:py-20 bg-gradient-to-r from-blue-50 to-purple-50">
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <motion.div
@@ -323,7 +323,7 @@ export function Landing() {
       </section>
 
       {/* Testimonials */}
-      <section id="testimonials" className="py-20 bg-white">
+      <section id="testimonials" className="py-16 md:py-20 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
@@ -351,7 +351,7 @@ export function Landing() {
       </section>
 
       {/* Pricing */}
-      <section id="pricing" className="py-20 bg-slate-50">
+      <section id="pricing" className="py-16 md:py-20 bg-slate-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
@@ -439,7 +439,7 @@ export function Landing() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-blue-600 to-purple-600 text-white">
+      <section className="py-16 md:py-20 bg-gradient-to-r from-blue-600 to-purple-600 text-white">
         <div className="container mx-auto px-4 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -475,13 +475,13 @@ export function Landing() {
           <div className="grid md:grid-cols-4 gap-8">
             <div>
               <div className="flex items-center gap-2 mb-4">
-                <div className="h-8 w-8 rounded-lg bg-white text-slate-900 grid place-items-center font-bold text-sm">
+                <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-blue-500 to-purple-500 text-white grid place-items-center font-bold text-xs">
                   DT
                 </div>
                 <span className="font-semibold">DebtTruth Coach</span>
               </div>
               <p className="text-sm text-slate-400">
-                Transparent financial tools for debt-free living.
+                Professional-grade financial tools combining transparent loan analysis with AI-powered debt strategies.
               </p>
             </div>
             

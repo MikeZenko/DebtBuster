@@ -6,9 +6,9 @@ import { DebtCoachSection } from '../components/DebtCoachSection';
 
 export function DebtCoach() {
   return (
-    <div className="space-y-8">
+    <div className="space-y-8 pb-8">
       {/* Page Header */}
-      <div className="text-center space-y-4">
+      <div className="text-center space-y-3 mb-8">
         <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-green-100 mb-4">
           <Brain className="h-8 w-8 text-green-600" />
         </div>
@@ -89,7 +89,7 @@ export function DebtCoach() {
         <CardContent>
           <div className="grid md:grid-cols-3 gap-6">
             <div>
-              <h4 className="font-semibold mb-2">💰 Increase Income</h4>
+              <h4 className="font-semibold mb-2">Increase Income</h4>
               <ul className="space-y-1 text-sm text-muted-foreground">
                 <li>• Take on side work or freelancing</li>
                 <li>• Sell items you no longer need</li>
@@ -98,7 +98,7 @@ export function DebtCoach() {
               </ul>
             </div>
             <div>
-              <h4 className="font-semibold mb-2">✂️ Cut Expenses</h4>
+              <h4 className="font-semibold mb-2">Cut Expenses</h4>
               <ul className="space-y-1 text-sm text-muted-foreground">
                 <li>• Review and cancel subscriptions</li>
                 <li>• Cook at home more often</li>
@@ -107,7 +107,7 @@ export function DebtCoach() {
               </ul>
             </div>
             <div>
-              <h4 className="font-semibold mb-2">🎯 Stay Motivated</h4>
+              <h4 className="font-semibold mb-2">Stay Motivated</h4>
               <ul className="space-y-1 text-sm text-muted-foreground">
                 <li>• Celebrate small wins and milestones</li>
                 <li>• Track progress visually</li>

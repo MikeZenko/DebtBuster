@@ -12,10 +12,10 @@ export function LoanComparison() {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="space-y-8"
+      className="space-y-8 pb-8"
     >
       {/* Page Header */}
-      <div className="text-center space-y-4">
+      <div className="text-center space-y-3 mb-8">
         <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-blue-100 mb-4">
           <Scale className="h-8 w-8 text-blue-600" />
         </div>
@@ -67,7 +67,7 @@ export function LoanComparison() {
       {/* Educational Section */}
       <Card className="bg-gradient-to-r from-blue-50 to-purple-50 border-blue-200">
         <CardHeader>
-          <CardTitle>💡 Pro Tips for Loan Shopping</CardTitle>
+          <CardTitle>Pro Tips for Loan Shopping</CardTitle>
           <CardDescription>Expert advice to help you make informed decisions</CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
