@@ -1,23 +1,6 @@
-import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { 
-  Home, 
-  Calculator, 
-  Brain, 
-  BarChart3, 
-  BookOpen, 
-  Users, 
-  Menu,
-  X,
-  CheckCircle
-} from 'lucide-react';
-import { Button } from "./ui/button";
-import { Badge } from "./ui/badge";
-import { BankConnectionModal } from "./BankConnectionModal";
-import { useAppStore } from '../store/useAppStore';
-import { useAuthStore } from '../store/useAuthStore';
-import { cn } from '../lib/utils';
 
+<<<<<<< Current (Your changes)
+=======
 const navigation = [
   { name: 'Dashboard', href: '/', icon: Home },
   { name: 'Loan Compare', href: '/loans', icon: Calculator },
@@ -47,12 +30,12 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <div className="container mx-auto px-4 h-16 flex items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3">
-            <div className="h-9 w-9 rounded-2xl bg-slate-900 text-white grid place-items-center font-bold">
+            <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-blue-600 to-purple-600 text-white grid place-items-center font-bold text-sm">
               DT
             </div>
             <div className="hidden sm:block">
-              <div className="font-semibold leading-tight">DebtTruth Coach</div>
-              <div className="text-xs text-muted-foreground -mt-0.5">Financial Clarity & Freedom</div>
+              <div className="font-semibold text-base leading-tight">DebtTruth Coach</div>
+              <div className="text-xs text-muted-foreground">Financial Freedom Platform</div>
             </div>
           </Link>
 
@@ -168,7 +151,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
           <div className="grid md:grid-cols-4 gap-8">
             <div>
               <div className="flex items-center gap-2 mb-4">
-                <div className="h-6 w-6 rounded bg-slate-900 text-white grid place-items-center text-xs font-bold">
+                <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-blue-600 to-purple-600 text-white grid place-items-center text-xs font-bold">
                   DT
                 </div>
                 <span className="font-semibold">DebtTruth Coach</span>
@@ -199,10 +182,10 @@ export function Layout({ children }: { children: React.ReactNode }) {
             <div>
               <h3 className="font-semibold mb-3">Security</h3>
               <ul className="space-y-2 text-sm">
-                <li className="text-muted-foreground">🔒 Bank-grade security</li>
-                <li className="text-muted-foreground">📱 Data stays local</li>
-                <li className="text-muted-foreground">👁️ Read-only access</li>
-                <li className="text-muted-foreground">🛡️ Privacy focused</li>
+                <li className="text-muted-foreground">Bank-grade security</li>
+                <li className="text-muted-foreground">Data stays local</li>
+                <li className="text-muted-foreground">Read-only access</li>
+                <li className="text-muted-foreground">Privacy focused</li>
               </ul>
             </div>
           </div>
@@ -224,3 +207,4 @@ export function Layout({ children }: { children: React.ReactNode }) {
     </div>
   );
 }
+>>>>>>> Incoming (Background Agent changes)

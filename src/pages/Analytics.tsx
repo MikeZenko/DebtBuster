@@ -11,9 +11,9 @@ export function Analytics() {
   const { isConnectedToBank } = useAppStore();
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-8 pb-8">
       {/* Page Header */}
-      <div className="text-center space-y-4">
+      <div className="text-center space-y-3 mb-8">
         <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-purple-100 mb-4">
           <BarChart3 className="h-8 w-8 text-purple-600" />
         </div>
@@ -121,7 +121,7 @@ export function Analytics() {
       {/* Educational Section */}
       <Card className="bg-gradient-to-r from-purple-50 to-pink-50 border-purple-200">
         <CardHeader>
-          <CardTitle>📊 Understanding Your Financial Metrics</CardTitle>
+          <CardTitle>Understanding Your Financial Metrics</CardTitle>
           <CardDescription>Learn what these numbers mean and how to improve them</CardDescription>
         </CardHeader>
         <CardContent>
@@ -178,6 +178,10 @@ export function Analytics() {
     </div>
   );
 }
+
+
+
+
 
 
 

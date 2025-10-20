@@ -1,6 +1,9 @@
+<<<<<<< Current (Your changes)
+
+=======
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { BarChart2, Calculator, Brain, TrendingUp, Users, BookOpen, ArrowRight, CreditCard, DollarSign } from 'lucide-react';
+import { BarChart2, Calculator, Brain, TrendingUp, Users, BookOpen, ArrowRight, CreditCard, DollarSign, CheckCircle } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "../components/ui/card";
 import { Button } from "../components/ui/button";
@@ -91,17 +94,17 @@ export function Dashboard() {
       className="space-y-8"
     >
       {/* Welcome Section */}
-      <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+      <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-8">
         <div>
-          <h1 className="text-3xl font-bold">Financial Dashboard</h1>
-          <p className="text-muted-foreground">
+          <h1 className="text-3xl md:text-4xl font-bold tracking-tight">Financial Dashboard</h1>
+          <p className="text-muted-foreground mt-2">
             Your complete debt management and financial health overview
           </p>
         </div>
         <div className="flex items-center gap-3">
           <BankConnectionModal />
           {isConnectedToBank && (
-            <Badge variant="secondary" className="flex items-center gap-1">
+            <Badge variant="secondary" className="flex items-center gap-2 px-3 py-1.5">
               <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
               Bank Connected
             </Badge>
@@ -110,7 +113,7 @@ export function Dashboard() {
       </div>
 
       {/* Quick Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
         <StatCard
           icon={CreditCard}
           label="Total Debt"
@@ -139,11 +142,11 @@ export function Dashboard() {
       </div>
 
       {/* Main Content Grid */}
-      <div className="grid lg:grid-cols-3 gap-8">
+      <div className="grid lg:grid-cols-3 gap-6">
         {/* Left Column - Quick Actions */}
         <div className="lg:col-span-2 space-y-6">
           <div>
-            <h2 className="text-xl font-semibold mb-4">Quick Actions</h2>
+            <h2 className="text-2xl font-semibold mb-4">Quick Actions</h2>
             <div className="grid md:grid-cols-2 gap-4">
               <QuickActionCard
                 icon={Calculator}
@@ -174,7 +177,7 @@ export function Dashboard() {
 
           {/* Recent Activity */}
           <div>
-            <h2 className="text-xl font-semibold mb-4">Recent Activity</h2>
+            <h2 className="text-2xl font-semibold mb-4">Recent Activity</h2>
             <Card>
               <CardContent className="p-6">
                 {debts.length > 0 ? (
@@ -204,14 +207,16 @@ export function Dashboard() {
                     )}
                   </div>
                 ) : (
-                  <div className="text-center py-8">
-                    <Brain className="h-12 w-12 mx-auto text-muted-foreground mb-4" />
-                    <h3 className="font-medium">No debts added yet</h3>
-                    <p className="text-sm text-muted-foreground mb-4">
-                      Start by adding your debts or connecting your bank account
+                  <div className="text-center py-12">
+                    <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-blue-50 mb-4">
+                      <Brain className="h-8 w-8 text-blue-600" />
+                    </div>
+                    <h3 className="font-semibold text-lg mb-2">No debts added yet</h3>
+                    <p className="text-sm text-muted-foreground mb-6 max-w-sm mx-auto">
+                      Start by adding your debts or connecting your bank account to begin your debt-free journey
                     </p>
                     <Link to="/debt-coach">
-                      <Button>Get Started</Button>
+                      <Button size="lg">Get Started</Button>
                     </Link>
                   </div>
                 )}
@@ -231,26 +236,30 @@ export function Dashboard() {
                 <CardTitle>Getting Started</CardTitle>
                 <CardDescription>Complete these steps to get the most out of DebtTruth Coach</CardDescription>
               </CardHeader>
-              <CardContent className="space-y-3">
-                <div className="flex items-center gap-3">
-                  <div className={`w-2 h-2 rounded-full ${isConnectedToBank ? 'bg-green-500' : 'bg-gray-300'}`} />
-                  <span className={isConnectedToBank ? 'line-through text-muted-foreground' : ''}>
+              <CardContent className="space-y-4">
+                <div className="flex items-start gap-3">
+                  <div className={`w-5 h-5 rounded-full flex items-center justify-center mt-0.5 ${isConnectedToBank ? 'bg-green-500' : 'bg-gray-200'}`}>
+                    {isConnectedToBank && <CheckCircle className="h-3 w-3 text-white" />}
+                  </div>
+                  <span className={`text-sm ${isConnectedToBank ? 'line-through text-muted-foreground' : ''}`}>
                     Connect your bank account
                   </span>
                 </div>
-                <div className="flex items-center gap-3">
-                  <div className={`w-2 h-2 rounded-full ${debts.length > 0 ? 'bg-green-500' : 'bg-gray-300'}`} />
-                  <span className={debts.length > 0 ? 'line-through text-muted-foreground' : ''}>
+                <div className="flex items-start gap-3">
+                  <div className={`w-5 h-5 rounded-full flex items-center justify-center mt-0.5 ${debts.length > 0 ? 'bg-green-500' : 'bg-gray-200'}`}>
+                    {debts.length > 0 && <CheckCircle className="h-3 w-3 text-white" />}
+                  </div>
+                  <span className={`text-sm ${debts.length > 0 ? 'line-through text-muted-foreground' : ''}`}>
                     Add your debts
                   </span>
                 </div>
-                <div className="flex items-center gap-3">
-                  <div className="w-2 h-2 rounded-full bg-gray-300" />
-                  <span>Create a payoff plan</span>
+                <div className="flex items-start gap-3">
+                  <div className="w-5 h-5 rounded-full bg-gray-200 mt-0.5" />
+                  <span className="text-sm">Create a payoff plan</span>
                 </div>
-                <div className="flex items-center gap-3">
-                  <div className="w-2 h-2 rounded-full bg-gray-300" />
-                  <span>Compare loan offers</span>
+                <div className="flex items-start gap-3">
+                  <div className="w-5 h-5 rounded-full bg-gray-200 mt-0.5" />
+                  <span className="text-sm">Compare loan offers</span>
                 </div>
               </CardContent>
             </Card>
@@ -267,13 +276,13 @@ export function Dashboard() {
             </CardHeader>
             <CardContent>
               <div className="space-y-3 text-sm">
-                <div className="p-3 bg-muted/50 rounded-lg">
-                  <p className="font-medium">Success Story</p>
-                  <p className="text-muted-foreground">"Paid off $15k in 18 months using the avalanche method!"</p>
+                <div className="p-4 bg-green-50 border border-green-200 rounded-lg">
+                  <p className="font-semibold text-green-900 mb-1">Success Story</p>
+                  <p className="text-green-700">"Paid off $15k in 18 months using the avalanche method!"</p>
                 </div>
-                <div className="p-3 bg-muted/50 rounded-lg">
-                  <p className="font-medium">Tip of the Day</p>
-                  <p className="text-muted-foreground">"Consider balance transfers for high-interest credit cards"</p>
+                <div className="p-4 bg-blue-50 border border-blue-200 rounded-lg">
+                  <p className="font-semibold text-blue-900 mb-1">Tip of the Day</p>
+                  <p className="text-blue-700">"Consider balance transfers for high-interest credit cards"</p>
                 </div>
               </div>
               <Link to="/community" className="block mt-4">
@@ -288,3 +297,4 @@ export function Dashboard() {
     </motion.div>
   );
 }
+>>>>>>> Incoming (Background Agent changes)
